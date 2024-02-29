@@ -1,14 +1,15 @@
-import { Box, Toolbar } from '@mui/material'
-import { NavBar } from '../components/NavBar';
-import { SideBar } from '../components/SideBar';
+import { Toolbar } from '@mui/material';
+import { Box } from '@mui/system'
+import { NavBar, SideBar } from '../components';
 
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 // eslint-disable-next-line react/prop-types
 export const JournalLayout = ({ children }) => {
     return (
-        <Box sx={{ display: 'flex ' }}>
+        <Box sx={{ display: 'flex ' }} className='animate__animated animate__fadeIn animate__faster'
+        >
 
            <NavBar drawerWidth = { drawerWidth }/>
 
@@ -20,7 +21,8 @@ export const JournalLayout = ({ children }) => {
             >
                 <Toolbar/>
 
-                {children}
+                { children }
+                
             </Box>
         </Box>
     )

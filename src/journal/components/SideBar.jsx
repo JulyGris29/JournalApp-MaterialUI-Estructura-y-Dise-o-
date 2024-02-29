@@ -1,11 +1,17 @@
-import { TurnedInNot } from "@mui/icons-material"
-import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
 
+import { Box, Divider, Drawer, List,Toolbar, Typography } from "@mui/material"
+import { useSelector } from 'react-redux';  
+import { SideBarItem } from "./";
 
 
 
 // eslint-disable-next-line react/prop-types
 export const SideBar = ({ drawerWidth = 240 }) => {
+
+    const { displayName } = useSelector (state => state.auth );
+    const { notes } = useSelector (state => state.journal );
+
+
     return (
         <Box
             compoment='nav'
@@ -23,7 +29,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
             >
                 <Toolbar>
                     <Typography variant='h6' noWrap compoment='div'>
-                        July Gris
+                        { displayName }
 
                     </Typography>
                 </Toolbar>
@@ -31,18 +37,8 @@ export const SideBar = ({ drawerWidth = 240 }) => {
 
                 <List>
                     {
-                        ['Enero', 'Febrero', 'Marzo', 'Abril'].map(text => (
-                            <ListItem key={text} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <TurnedInNot />
-                                    </ListItemIcon>
-                                    <Grid container>
-                                        <ListItemText primary={ text } />
-                                        <ListItemText secondary={'Labore id tempor veniam duis veniam magna.'} />
-                                    </Grid>                                    
-                                </ListItemButton>
-                            </ListItem>
+                        notes.map(note=> (
+                            <SideBarItem key={ note.id } {...note } />
                         ))
                     }
                 </List>
